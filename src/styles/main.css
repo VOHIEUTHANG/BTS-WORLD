@@ -17,7 +17,7 @@ body {
 }
 #header.show {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 1);
 }
 .header-wrapper {
   padding: 27px 80px;
@@ -43,7 +43,7 @@ body {
 }
 .header-nav-link {
   position: relative;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 300;
   color: inherit;
   display: block;
@@ -126,7 +126,66 @@ body {
 }
 /* ================== ABOUT US SECTION ================== */
 #aboutUs-section {
+  padding: 60px 0;
 }
+.slide-container {
+  position: relative;
+}
+.slide-main-view {
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.slide-list {
+  display: flex;
+}
+.slide-item {
+  width: 100%;
+  flex-shrink: 0;
+  position: relative;
+  max-width: 1200px;
+}
+.slide-des {
+  position: absolute;
+  left: 40px;
+  bottom: 40px;
+}
+.slide-des > h3 {
+  color: white;
+  font-size: 2rem;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.slide-des > h4 {
+  font-size: 5rem;
+  color: white;
+  text-shadow: 0 0 40px rgba(0, 0, 0, 0.7);
+}
+.slide-controls {
+  position: absolute;
+  inset: 0;
+}
+.slide-controls > div {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 4rem;
+  color: #888;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.slide-controls > div > i {
+  transition: all 0.4s ease;
+}
+.slide-controls > div:hover > i {
+  color: var(--primary-color);
+}
+.left-btn {
+  left: 10%;
+}
+.right-btn {
+  right: 10%;
+}
+
 /* ================== PHOTOS SECTION ================== */
 #photos-section {
 }
