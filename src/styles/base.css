@@ -1,0 +1,50 @@
+html {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+input,
+textarea,
+select,
+button {
+  outline: none;
+}
+input {
+  line-height: normal;
+}
+label,
+button {
+  cursor: pointer;
+}
+a {
+  text-decoration: none;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+ul {
+  list-style: none;
+}
+/* Global css classes  */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.container-full {
+  width: 100%;
+  max-width: 100%;
+}
+/* VARIABLE */
+:root {
+  --primary-color: #ead0ed;
+  --secondary-color: #90bce4;
+  --header-height: 100px;
+}
