@@ -446,7 +446,6 @@ body {
 #mv-section {
   padding-top: 60px;
 }
-
 .mv-container {
 }
 .mv-video-frame {
@@ -459,4 +458,36 @@ body {
 }
 /* ================== FOOTER ================== */
 #footer {
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solide rgba(0, 0, 0, 0.2);
+  padding: 0 40px;
+}
+.footer-copyright {
+  font-size: 1.2rem;
+}
+.footer-nav {
+}
+.footer-link {
+  position: relative;
+  padding: 4px 8px;
+  color: #333;
+  text-transform: capitalize;
+  transition: all 0.4s ease;
+}
+.footer-link::after {
+  content: "";
+  position: absolute;
+  display: block;
+  background-color: var(--secondary-color);
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  transition: all 0.3s ease;
+}
+.footer-link:hover::after {
+  width: 100%;
 }
