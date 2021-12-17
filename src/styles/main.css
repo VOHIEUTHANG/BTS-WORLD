@@ -48,6 +48,7 @@ body {
   color: inherit;
   display: block;
   margin: 0 12px;
+  transition: all 0.4s ease;
 }
 .header-nav-link::after {
   content: "";
@@ -62,17 +63,14 @@ body {
 }
 .header-nav-link:hover {
   color: white;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }
 .header-nav-link:hover::after {
   width: 100%;
   background-color: var(--secondary-color);
 }
 #header.show .header-nav-link:hover {
-  color: var(--secondary-color);
-}
-#header.show .header-nav-link:hover::after {
-  width: 100%;
-  background-color: var(--primary-color);
+  color: black;
 }
 /* ================== HOME SECTION ================== */
 #home-section {
