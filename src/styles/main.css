@@ -404,9 +404,42 @@ body {
   margin-top: 4px;
   justify-content: space-between;
 }
-.current-time {
+
+.playlist-ctls-main {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px 12px;
+  margin-top: 20px;
 }
-.end-time {
+.playlist-ctls-main > div {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 1px solide black;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+}
+.prev-btn {
+}
+.play-btn {
+  width: 80px !important;
+  height: 80px !important;
+}
+.play-btn > i {
+  display: none;
+}
+.play-btn > i.fa-play {
+  display: block;
+}
+.play-btn.playing > i.fa-pause {
+  display: block;
+}
+.next-btn {
 }
 
 /* ================== MUSIC VIDEOS SECTION ================== */
