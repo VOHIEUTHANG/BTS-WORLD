@@ -50,6 +50,7 @@ ul {
   font-weight: bold;
   padding: 40px 0;
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+  text-transform: uppercase;
 }
 .next-section {
   margin-top: 80px;

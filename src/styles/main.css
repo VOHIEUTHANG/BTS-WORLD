@@ -6,7 +6,6 @@ body {
 #root {
   color: #333;
   font-size: 1.4rem;
-  height: 2000px;
 }
 /* ================== HEADER ================== */
 #header {
@@ -126,7 +125,7 @@ body {
 }
 /* ================== ABOUT US SECTION ================== */
 #aboutUs-section {
-  padding: 60px 0;
+  padding-top: 60px;
 }
 .slide-container {
   position: relative;
@@ -188,12 +187,87 @@ body {
 
 /* ================== PHOTOS SECTION ================== */
 #photos-section {
+  padding-top: 60px;
 }
+.photos-list {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 40px;
+}
+.photo-item {
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.photo-item > img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  transform: scale(1.01);
+  height: 540px;
+  transition: all 0.8s ease;
+}
+.photo-item:hover > img {
+  filter: blur(3px) brightness(80%);
+  transform: scale(1.1);
+}
+.photo-item :hover .photo-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+.photo-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  color: white;
+}
+.photo-des {
+  position: absolute;
+  bottom: 20px;
+  left: 30px;
+}
+.photo-des > .name {
+  font-size: 3rem;
+  letter-spacing: 4px;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+}
+.photo-des > .birth {
+}
+.photo-des > .contacts {
+  margin-top: 20px;
+  display: flex;
+}
+.contacts-item {
+  width: 50px;
+  height: 50px;
+  display: block;
+  margin-right: 12px;
+  border-radius: 50%;
+  border: 2px solid white;
+  cursor: pointer;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.4s ease;
+}
+.contacts-item:last-child {
+  width: 70px;
+  border-radius: 30px;
+}
+.contacts-item:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
 /* ================== PLAYLIST SECTION ================== */
 #playlist-section {
+  padding-top: 60px;
 }
 /* ================== MUSIC VIDEOS SECTION ================== */
 #mv-section {
+  padding-top: 60px;
 }
 /* ================== FOOTER ================== */
 #footer {
