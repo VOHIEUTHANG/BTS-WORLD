@@ -241,10 +241,10 @@ $(function () {
                 }
                 audio[0].onended = function () {
                     let nextIndex = 0;
+                    if (_this.index != songs.length - 1) {
+                        nextIndex = Number(_this.index) + 1;
+                    }
                     [..._this.items()].forEach((item, index) => {
-                        if (_this.index != songs.length - 1) {
-                            nextIndex = _this.index + 1;
-                        }
                         if (index == nextIndex) {
                             item.click();
                         }
@@ -289,6 +289,7 @@ $(function () {
             btn.toggleClass('playing')
             if (!isPlaying) {
                 video[0].play();
+
                 isPlaying = true;
                 overlay.css('display', 'none')
             } else {
