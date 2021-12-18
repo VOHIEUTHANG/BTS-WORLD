@@ -44,7 +44,7 @@ body {
   position: relative;
   font-size: 1.3rem;
   font-weight: 300;
-  color: inherit;
+  color: white;
   display: block;
   margin: 0 12px;
   transition: all 0.4s ease;
@@ -56,9 +56,9 @@ body {
   width: 0;
   left: 0;
   bottom: -4px;
-  height: 2px;
-  background-color: var(--primary-color);
-  transition: all 0.3s ease-in;
+  height: 3px;
+  background: white;
+  transition: all 0.3s ease;
 }
 .header-nav-link:hover {
   color: white;
@@ -66,10 +66,16 @@ body {
 }
 .header-nav-link:hover::after {
   width: 100%;
+  background-color: white;
+}
+#header.show .header-nav-link:hover::after {
   background-color: var(--secondary-color);
 }
 #header.show .header-nav-link:hover {
   color: black;
+}
+#header.show .header-nav-link {
+  color: #333;
 }
 /* ================== HOME SECTION ================== */
 #home-section {
@@ -322,8 +328,8 @@ body {
   color: white;
   background-image: linear-gradient(
     to right,
-    var(--secondary-color),
-    var(--primary-color)
+    var(--primary-color),
+    var(--secondary-color)
   );
 }
 
@@ -331,8 +337,8 @@ body {
   color: white;
   background-image: linear-gradient(
     to right,
-    var(--secondary-color),
-    var(--primary-color)
+    var(--primary-color),
+    var(--secondary-color)
   );
 }
 
@@ -453,9 +459,39 @@ body {
 .play-btn.playing > i.fa-play {
   display: none;
 }
-.next-btn {
+/* 
+input[type="range"] {
+  -webkit-appearance: none;
 }
-
+input[type="range"]::-webkit-slider-runnable-track {
+  width: 300px;
+  height: 5px;
+  background: #ddd;
+  border: none;
+  border-radius: 3px;
+  background: linear-gradient(
+    to right,
+    var(--progressbar-active-bg) 0%,
+    var(--progressbar-active-bg) 31.8698%,
+    var(--progressbar-player-bg) 31.8698%,
+    var(--progressbar-player-bg) 100%
+  );
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: var(--secondary-color);
+  margin-top: -4px;
+}
+input[type="range"]:focus {
+  outline: none;
+}
+input[type="range"]:focus::-webkit-slider-runnable-track {
+  background: #ccc;
+} */
 /* ================== MUSIC VIDEOS SECTION ================== */
 #mv-section {
   padding-top: 60px;

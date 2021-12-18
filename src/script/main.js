@@ -110,7 +110,9 @@ $(function () {
         const ctlThumbIMG = thumb.children('img');
         const ctlName = $('.playlist-ctls-name');
         const playBtn = $('.play-btn');
-        const pauseBtn = $('pause-btn');
+        const nextBtn = $('.next-btn');
+        const prevBtn = $('.prev-btn');
+        const durationTime = $(".end-time");
         const progressBar = $('.playlist-ctls-duraction');
         const ctlSinger = $('.playlist-ctls-singer');
         const playlist = $('.play-list');
@@ -152,27 +154,46 @@ $(function () {
                 playlist[0].innerHTML = htmls;
 
             },
+            updateDuration() {
+                const _this = this;
+                songs.forEach((song, index) => {
+                    const audio = new Audio();
+                    audio.src = song.songSRC;
+                    $(audio).on("loadedmetadata", function () {
+                        var val = Math.floor(audio.duration);
+                        const stringVal = `${Math.floor(val / 60)}:${val % 60 > 9 ? val % 60 : '0' + val % 60}`;
+                        $(_this.items()[index]).children('.song-duration').text(stringVal)
+                        index == 0 && durationTime.text(stringVal);
+                    });
+                })
+            },
             renderCtl() {
                 const activeSong = songs[this.index];
                 ctlThumbIMG.attr('src', activeSong.thumbSRC);
                 ctlName.text(`${activeSong.name}`);
                 ctlSinger.text(`${activeSong.singer}`);
                 audio.attr('src', activeSong.songSRC);
+                const duration = this.activeItem().children('.song-duration').text();
+                durationTime.text(duration);
             },
             mainHandler() {
                 const _this = this;
-                this.items().click(function () {
-                    _this.index = $(this)[0].dataset.index;
-                    _this.activeItem().removeClass('active');
-                    $(this).hasClass('active') || $(this).addClass('active');
+                function songActive() {
+                    [..._this.items()].forEach((item, index) => {
+                        _this.index == index ? item.classList.add('active') : item.classList.remove('active');
+                    })
                     _this.renderCtl();
-
                     audio[0].play();
                     animate.play();
                     playBtn.hasClass('playing') || playBtn.addClass('playing');
-
+                }
+                this.items().click(function () {
+                    _this.index = $(this)[0].dataset.index;
+                    songActive();
+                    _this.activeItem().removeClass('active');
+                    $(this).hasClass('active') || $(this).addClass('active');
                 })
-                // PLAY CLICKED
+                // PLAY BTN
                 playBtn.click(function () {
                     $(this).toggleClass('playing');
                     if ($(this).hasClass('playing')) {
@@ -183,9 +204,56 @@ $(function () {
                         animate.pause();
                     }
                 })
+                // Heart Handler
+                $('.song-heart').click(function (e) {
+                    e.stopPropagation();
+                    $(this).toggleClass('active');
+                })
+                // NEXT  BTN
+                nextBtn.click(function () {
+                    if (_this.index < songs.length - 1) {
+                        _this.index++;
+                    } else {
+                        _this.index = 0;
+                    }
+                    songActive();
+                })
+                // PREV  BTN
+                prevBtn.click(function () {
+                    if (_this.index > 0) {
+                        _this.index--;
+                    } else {
+                        _this.index = songs.length - 1;
+                    }
+                    songActive();
+                })
+                audio[0].ontimeupdate = function () {
+                    let percent = 0;
+                    const currentTime = Math.floor(this.currentTime);
+                    if (this.duration) {
+                        percent = this.currentTime / this.duration;
+                    }
+                    progressBar[0].value = 1000 * percent;
+                    const minute = Math.floor(currentTime / 60);
+                    const seconds = currentTime % 60;
+                    const stringTime = `${minute}:${seconds > 9 ? seconds : '0' + seconds}`;
+                    $('.current-time').text(stringTime);
+                }
+                audio[0].onended = function () {
+                    let nextIndex = 0;
+                    [..._this.items()].forEach((item, index) => {
+                        if (_this.index != songs.length - 1) {
+                            nextIndex = _this.index + 1;
+                        }
+                        if (index == nextIndex) {
+                            item.click();
+                        }
+                    })
+                }
             },
             run() {
                 this.renderSong();
+                this.updateDuration();
                 this.renderCtl();
                 this.mainHandler();
             }
