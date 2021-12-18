@@ -75,7 +75,7 @@ $(window).on('load', function () {
         autoSlide();
     })
 })
-// Playlist handler =============
+// PLAYLIST HANDLER =============
 $(function () {
     (function () {
         const songs = [
@@ -250,6 +250,23 @@ $(function () {
                         }
                     })
                 }
+                window.onkeydown = function (e) {
+                    e.preventDefault();
+                    if (e.keyCode == 32) {
+                        playBtn.click();
+                    }
+                    if (e.keyCode == 40) {
+                        nextBtn.click();
+                    }
+                    if (e.keyCode == 38) {
+                        prevBtn.click();
+                    }
+                }
+                progressBar[0].oninput = function (e) {
+                    const seekTime = Math.floor((progressBar[0].value / 1000) * audio[0].duration);
+                    audio[0].currentTime = seekTime;
+                };
+
             },
             run() {
                 this.renderSong();
@@ -259,4 +276,29 @@ $(function () {
             }
         }
     })().run();
+})
+// VIDEO HANDLER ==============
+$(function () {
+    $(window).on('load', function () {
+        let isPlaying = false;
+        const video = $('.mv-video-frame video');
+        const videoFrame = $('.mv-video-frame');
+        const btn = $('.mv-overlay-btn');
+        const overlay = $('.mv-overlay')
+        btn.click(function () {
+            btn.toggleClass('playing')
+            if (!isPlaying) {
+                video[0].play();
+                isPlaying = true;
+                overlay.css('display', 'none')
+            } else {
+                video[0].pause();
+                isPlaying = false;
+            }
+        })
+        videoFrame.mouseleave(function () {
+            overlay.css('display', 'flex')
+        })
+    })
+
 })

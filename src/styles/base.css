@@ -84,6 +84,11 @@ ul {
   background: rgba(255, 255, 255, 0.6);
 }
 
+::selection {
+  color: var(--primary-color);
+  background: var(--secondary-color);
+}
+
 /* VARIABLE */
 :root {
   --primary-color: #ead0ed;
