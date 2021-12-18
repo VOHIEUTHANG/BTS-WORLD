@@ -75,3 +75,120 @@ $(window).on('load', function () {
         autoSlide();
     })
 })
+// Playlist handler =============
+$(function () {
+    (function () {
+        const songs = [
+            {
+                name: 'Savage Love',
+                songSRC: './assets/musics/SavageLove.mp3',
+                thumbSRC: './assets/images/song_savage-love.jpg',
+                singer: 'BTS',
+            },
+            {
+                name: 'Heartbeat',
+                songSRC: './assets/musics/Heartbeat.mp3',
+                thumbSRC: './assets/images/song_heart-beat.PNG',
+                singer: 'BTS',
+            },
+            {
+                name: 'Dream Glow',
+                songSRC: './assets/musics/DreamGlow.mp3',
+                thumbSRC: './assets/images/song_dream-glow.PNG',
+                singer: 'BTS',
+            },
+            {
+                name: 'Waste it on me',
+                songSRC: './assets/musics/WasteItOnMe.mp3',
+                thumbSRC: './assets/images/song_waste-it-on-me.jpg',
+                singer: 'BTS',
+            },
+        ];
+        // VARIABLES
+        const audio = $('#main-audio');
+        const thumb = $('.playlist-ctls-thumb');
+        const ctlThumbIMG = thumb.children('img');
+        const ctlName = $('.playlist-ctls-name');
+        const playBtn = $('.play-btn');
+        const pauseBtn = $('pause-btn');
+        const progressBar = $('.playlist-ctls-duraction');
+        const ctlSinger = $('.playlist-ctls-singer');
+        const playlist = $('.play-list');
+        const items = $('.play-list .item');
+        const animate = thumb[0].animate([
+            { transform: 'rotate(360deg)' },
+        ], {
+            duration: 20000,
+            iterations: Infinity
+        });
+        animate.pause();
+        progressBar[0].value = 0;
+        return {
+            index: 0,
+            activeItem() {
+                return $('.item.active');
+            },
+            items() {
+                return $('.play-list .item');
+            },
+            renderSong() {
+                const htmls = songs.reduce((acc, item, index) => {
+                    return acc + `
+                      <div class="item ${this.index == index ? "active" : ""}" data-index="${index}">
+                  <div class="item-head">
+                    <div class="item-thumb">
+                      <img src="${item.thumbSRC}" alt="" />
+                    </div>
+                    <div class="song-name">${item.name}</div>
+                  </div>
+                  <div class="song-singer">${item.singer}</div>
+                  <div class="song-duration">3:20</div>
+                  <div class="song-heart">
+                    <i class="fas fa-heart"></i>
+                  </div>
+                </div>
+                    `;;
+                }, '')
+                playlist[0].innerHTML = htmls;
+
+            },
+            renderCtl() {
+                const activeSong = songs[this.index];
+                ctlThumbIMG.attr('src', activeSong.thumbSRC);
+                ctlName.text(`${activeSong.name}`);
+                ctlSinger.text(`${activeSong.singer}`);
+                audio.attr('src', activeSong.songSRC);
+            },
+            mainHandler() {
+                const _this = this;
+                this.items().click(function () {
+                    _this.index = $(this)[0].dataset.index;
+                    _this.activeItem().removeClass('active');
+                    $(this).hasClass('active') || $(this).addClass('active');
+                    _this.renderCtl();
+
+                    audio[0].play();
+                    animate.play();
+                    playBtn.hasClass('playing') || playBtn.addClass('playing');
+
+                })
+                // PLAY CLICKED
+                playBtn.click(function () {
+                    $(this).toggleClass('playing');
+                    if ($(this).hasClass('playing')) {
+                        audio[0].play()
+                        animate.play();
+                    } else {
+                        audio[0].pause()
+                        animate.pause();
+                    }
+                })
+            },
+            run() {
+                this.renderSong();
+                this.renderCtl();
+                this.mainHandler();
+            }
+        }
+    })().run();
+})
