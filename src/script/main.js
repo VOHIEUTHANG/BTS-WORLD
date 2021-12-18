@@ -198,6 +198,7 @@ $(function () {
                     $(this).toggleClass('playing');
                     if ($(this).hasClass('playing')) {
                         audio[0].play()
+                        $('.mv-video-frame video')[0].paused || $('.mv-overlay-btn')[0].click();
                         animate.play();
                     } else {
                         audio[0].pause()
@@ -266,7 +267,6 @@ $(function () {
                     const seekTime = Math.floor((progressBar[0].value / 1000) * audio[0].duration);
                     audio[0].currentTime = seekTime;
                 };
-
             },
             run() {
                 this.renderSong();
@@ -289,7 +289,8 @@ $(function () {
             btn.toggleClass('playing')
             if (!isPlaying) {
                 video[0].play();
-
+                $('#main-audio')[0].paused || $('.play-btn')[0].click();
+                console.log($('#main-audio')[0].paused);
                 isPlaying = true;
                 overlay.css('display', 'none')
             } else {
