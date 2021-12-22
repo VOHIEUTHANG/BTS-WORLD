@@ -80,15 +80,15 @@ $(function () {
     (function () {
         const songs = [
             {
-                name: 'Savage Love',
-                songSRC: './assets/musics/SavageLove.mp3',
-                thumbSRC: './assets/images/song_savage-love.jpg',
-                singer: 'BTS',
-            },
-            {
                 name: 'Heartbeat',
                 songSRC: './assets/musics/Heartbeat.mp3',
                 thumbSRC: './assets/images/song_heart-beat.PNG',
+                singer: 'BTS',
+            },
+            {
+                name: 'Savage Love',
+                songSRC: './assets/musics/SavageLove.mp3',
+                thumbSRC: './assets/images/song_savage-love.jpg',
                 singer: 'BTS',
             },
             {
@@ -103,6 +103,7 @@ $(function () {
                 thumbSRC: './assets/images/song_waste-it-on-me.jpg',
                 singer: 'BTS',
             },
+
         ];
         // VARIABLES
         const audio = $('#main-audio');
@@ -277,7 +278,6 @@ $(function () {
         }
     })().run();
 })
-// VIDEO HANDLER ==============
 $(function () {
     $(window).on('load', function () {
         let isPlaying = false;
